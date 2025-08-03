@@ -25,4 +25,4 @@ Track real-world actions like coding, reading, workouts, and gain XP to "unlock"
 ```bash
 gcc main.c -o grind
 mv grind /opt/homebrew/bin/  # or /usr/local/bin/ on Intel Macs
-
+```
