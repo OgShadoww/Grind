@@ -10,11 +10,20 @@ Track real-world actions like coding, reading, workouts, and gain XP to "unlock"
 
 - ✅ Add XP by completing tasks (`grind add code_30min`)
 - ✅ Spend XP to unlock (`grind spend 3`)
-- ✅ View current XP and daily history (`grind show`)
+- ✅ View current XP (`grind show`)
 - ✅ Lightweight and fast — written in C
 - ✅ Simple file-based system (no databases)
 - ✅ Fully offline — your XP stays local
 - ✅ Supports custom XP rules via `config.txt`
+
+---
+
+## General usage
+
+xp - Shows details about app
+xp add [name_of_task] - Add to you xp points of your done task
+xp use [name_of_thing] - Use xp points for any of usages
+xp show - Show your current xp points
 
 ---
 
