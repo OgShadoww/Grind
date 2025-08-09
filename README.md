@@ -20,10 +20,10 @@ Track real-world actions like coding, reading, workouts, and gain XP to "unlock"
 
 ## General usage
 
-xp - Shows details about app
-xp add [name_of_task] - Add to you xp points of your done task
-xp use [name_of_thing] - Use xp points for any of usages
-xp show - Show your current xp points
+xp - Shows details about app   
+xp add [name_of_task] - Add to you xp points of your done task   
+xp use [name_of_thing] - Use xp points for any of usages   
+xp show - Show your current xp points   
 
 ---
 
