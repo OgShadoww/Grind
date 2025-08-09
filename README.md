@@ -35,3 +35,9 @@ xp show - Show your current xp points
 gcc main.c -o grind
 mv grind /opt/homebrew/bin/  # or /usr/local/bin/ on Intel Macs
 ```
+
+---
+
+### Plans for future:
+
+- Abilitty to download via Homebrew
