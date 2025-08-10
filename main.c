@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void startMessage() {
+void start_message() {
   printf("╔════════════════════════════════════════╗\n");
   printf("║                🧠 GRIND                ║\n");
   printf("╚════════════════════════════════════════╝\n\n");
@@ -17,14 +17,39 @@ void startMessage() {
   printf("\"Don’t just live. Level up.\"\n");
 }
 
+void open_file() {
+
+}
+
+void add_xp() {
+
+}
+
+void use_xp() {
+  
+}
+
+void show_xp() {
+
+}
+
+void emit_function(char *function, char *arg) {
+  if(function == "add") {
+    add_xp(arg);
+  }
+  if(function == "use") {
+    use_xp();
+  }
+  if(function == "show") {
+    show_xp(); 
+  }
+}
+
 int main(int arg, char **args) {
   if(arg < 2) {
-    startMessage();
+    start_message();
     return 0;
   }
-  else {
-    printf("%c", args[1][0]);
-  }
-  
+
   return 0;
 }
