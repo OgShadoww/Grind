@@ -2,6 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define TASKS_FILE "tasks.txt"
+#define POINTS_FILE "point.txt" 
+
 void start_message() {
   printf("╔════════════════════════════════════════╗\n");
   printf("║                🧠 GRIND                ║\n");
@@ -20,7 +23,7 @@ void start_message() {
 }
 
 FILE open_xp(char *mode) {
-  FILE *point = fopen("point.txt", mode);
+  FILE *point = fopen(POINTS_FILE, mode);
   if(point == NULL) {
     printf("Error handling xp file");
     exit(-1);
@@ -38,7 +41,7 @@ void set_xp() {
 }
 
 int get_task_xp(char *task) {
-  FILE *tasks = fopen("tasks.txt", "r");
+  FILE *tasks = fopen(TASKS_FILE, "r");
   if(!tasks) {
     printf("Error handling tasks file");
     exit(-1);
