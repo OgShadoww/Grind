@@ -19,29 +19,46 @@ void start_message() {
   printf("\"Don’t just live. Level up.\"\n");
 }
 
-int open_xp() {
-  FILE *point = fopen("point.txt", "r");
+FILE open_xp(char *mode) {
+  FILE *point = fopen("point.txt", mode);
   if(point == NULL) {
     printf("Error handling xp file");
     exit(-1);
   }
 
-  int points;
-  fscanf(point, "%d", &points);
-  fclose(point);
+  return *point;
+}
 
-  return points;
+void close_file() {
+  
+}
+
+void set_xp() {
+  
+}
+
+int get_task_xp(char *task) {
+  FILE *tasks = fopen("tasks.txt", "r");
+  if(!tasks) {
+    printf("Error handling tasks file");
+    exit(-1);
+  }
+
+  char string[50];
+  int xp;
+
+  while(fscanf(tasks, "%s %d", string, &xp ) == 2) {
+    if(strcmp(string, task) == 0) {
+      return xp;
+    }
+  }
+
+
+  return 0;
 }
 
 void add_xp(char *arg) {
-  FILE *tasks = fopen("tasks.txt", "r");
-  char string[50];  
-
-  while(fscanf(tasks, "%s", string ) == 1) {
-    if(string == arg) {
-      
-    }
-  }
+  int xp = get_task_xp(arg);
 }
 
 void use_xp(char *arg) {
@@ -56,10 +73,10 @@ void emit_function(char *function, char *arg) {
   if(strcmp(function, "add") == 0) {
     add_xp(arg);
   }
-  if(strcmp(function, "use") == 0) {
+  else if(strcmp(function, "use") == 0) {
     use_xp(arg);
   }
-  if(strcmp(function, "show") == 0) {
+  else if(strcmp(function, "show") == 0) {
     show_xp(arg); 
   }
 }
