@@ -63,18 +63,28 @@ int load_xp() {
 }
 
 void add_xp(char *arg) {
-  int xp = get_task_xp(arg);
+  int task_xp = get_task_xp(arg);
+  int balance_xp = load_xp();
+  int sum = task_xp + balance_xp;
   FILE *f = open_xp("w");
-  fprintf(f, "%d", xp);
+  fprintf(f, "%d", sum);
 
   fclose(f);
-  printf("%d points was add\n", xp);
-  printf("Your current balance : %d\n", load_xp());
+  printf("%d points was add\n", task_xp);
+  printf("Your current balance : %d\n", sum);
   return;
 }
 
 void use_xp(char *arg) {
-   
+  int task_xp = get_task_xp(arg);
+  int balance_xp = load_xp();
+  int res = balance_xp - task_xp;
+  res < 0 ? printf("You have not enough points for this") : printf("Succes, your current balance: %d", res);
+  FILE *f = open_xp("w");
+
+  fprintf(f, "%d", res);
+  fclose(f);
+  return;
 }
 
 void show_xp(char *arg) {
