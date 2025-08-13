@@ -11,15 +11,12 @@ void start_message() {
   printf("║                🧠 GRIND                ║\n");
   printf("╚════════════════════════════════════════╝\n\n");
   printf("Turn your real-life grind into a game.\nEarn XP for productive actions.\nSpend XP for things you love.\nLevel up your life.\n\n");
-
   printf("Commands:\n");
   printf("\txp add <task>\n");
   printf("\txp use <reward>\n");
   printf("\txp show\n\n\n");
-
   printf("Fully offline. Simple file storage.\n");
   printf("Lightweight C code — runs anywhere.\n\n");
-
   printf("\"Don’t just live. Level up.\"\n");
 }
 
@@ -27,7 +24,7 @@ FILE *open_xp(char *mode) {
   FILE *point = fopen(POINTS_FILE, mode);
   if(point == NULL) {
     printf("Error handling xp file");
-    exit(-1);
+    return 0;
   }
 
   return point;
@@ -43,7 +40,7 @@ int lookup_xp(char *filename, char *task) {
   char string[50];
   int xp;
   
-  while(fscanf(f, "%s %d", string, &xp ) == 2) {
+  while(fscanf(f, "%49s %d", string, &xp ) == 2) {
     if(strcmp(string, task) == 0) {
       fclose(f);
       return xp;
