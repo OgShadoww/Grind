@@ -4,6 +4,7 @@
 
 #define TASKS_FILE "tasks.txt"
 #define POINTS_FILE "point.txt" 
+#define ACTIVITIES_FILE "activities.txt"
 
 void start_message() {
   printf("╔════════════════════════════════════════╗\n");
@@ -32,24 +33,25 @@ FILE *open_xp(char *mode) {
   return point;
 }
 
-int get_task_xp(char *task) {
-  FILE *tasks = fopen(TASKS_FILE, "r");
-  if(!tasks) {
-    printf("Error handling tasks file\n");
+int lookup_xp(char *filename, char *task) {
+  FILE *f = fopen(filename, "r");
+  if(!f) {
+    printf("Error handling file\n");
     exit(-1);
   }
 
   char string[50];
   int xp;
   
-  while(fscanf(tasks, "%s %d", string, &xp ) == 2) {
+  while(fscanf(f, "%s %d", string, &xp ) == 2) {
     if(strcmp(string, task) == 0) {
+      fclose(f);
       return xp;
     }
   }
 
-  fclose(tasks);
-  printf("Task wasn't be finded\n");
+  fclose(f);
+  printf("Xp wasn't be finded\n");
   return 0;
 }
 
@@ -63,7 +65,7 @@ int load_xp() {
 }
 
 void add_xp(char *arg) {
-  int task_xp = get_task_xp(arg);
+  int task_xp = lookup_xp(TASKS_FILE, arg);
   int balance_xp = load_xp();
   int sum = task_xp + balance_xp;
   FILE *f = open_xp("w");
@@ -76,14 +78,18 @@ void add_xp(char *arg) {
 }
 
 void use_xp(char *arg) {
-  int task_xp = get_task_xp(arg);
+  int activity_xp = lookup_xp(ACTIVITIES_FILE ,arg);
   int balance_xp = load_xp();
-  int res = balance_xp - task_xp;
-  res < 0 ? printf("You have not enough points for this") : printf("Succes, your current balance: %d", res);
+  int res = balance_xp - activity_xp;
+  if(res < 0) {
+    printf("You have not enough points for this\n");
+    return;
+  }
   FILE *f = open_xp("w");
 
   fprintf(f, "%d", res);
   fclose(f);
+  printf("Succes, your current balance: %d\n", res);
   return;
 }
 
