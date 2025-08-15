@@ -30,6 +30,16 @@ FILE *open_xp(char *mode) {
   return point;
 }
 
+FILE *open_tasks(char *mode) {
+  FILE *f = fopen(TASKS_FILE, mode);
+  if(f == NULL) {
+    printf("Error handling tasks file");
+    return 0;
+  }
+
+  return f;
+}
+
 int lookup_xp(char *filename, char *task) {
   FILE *f = fopen(filename, "r");
   if(!f) {
@@ -90,22 +100,35 @@ void use_xp(char *arg) {
   return;
 }
 
-void show_xp(char *arg) {
+void show_xp() {
   int xp = load_xp();
   printf("Current points : %d\n", xp);
 
   return;
 }
 
+void show_tasks() {
+  FILE *tasks = open_tasks("r");
+  char string[50];
+  int n;
+
+  while(fscanf(tasks, "%s %d", string, &n) == 2) {
+    printf("%s %d\n", string, n);
+  }
+}
+
 void emit_function(char *function, char *arg) {
-  if(strcmp(function, "add") == 0) {
+  if(strcmp(function, "-a") == 0) {
     add_xp(arg);
   }
-  else if(strcmp(function, "use") == 0) {
+  else if(strcmp(function, "-u") == 0) {
     use_xp(arg);
   }
-  else if(strcmp(function, "show") == 0) {
-    show_xp(arg); 
+  else if(strcmp(function, "-p") == 0) {
+    show_xp(); 
+  }
+  else if(strcmp(function, "-t") == 0) {
+    show_tasks(); 
   }
   else {
     printf("Commands wasn't finded\n");
