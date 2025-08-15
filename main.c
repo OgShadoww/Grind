@@ -115,6 +115,22 @@ void show_tasks() {
   while(fscanf(tasks, "%s %d", string, &n) == 2) {
     printf("%s %d\n", string, n);
   }
+  fclose(tasks);
+  return;
+}
+
+void add_task() {
+  FILE *tasks = open_tasks("a");
+  char name[50];
+  int point;
+
+  printf("Please write the name of new task: \n");
+  scanf("%s", name);
+  printf("Please write the point of the new task: \n");
+  scanf("%d", &point);
+
+  fprintf(tasks, "%s %d\n", name, point);
+  printf("New task was added, Name: %s Point: %d\n", name, point);
 }
 
 void emit_function(char *function, char *arg) {
@@ -129,6 +145,9 @@ void emit_function(char *function, char *arg) {
   }
   else if(strcmp(function, "-t") == 0) {
     show_tasks(); 
+  }
+  else if(strcmp(function, "-ta") == 0) {
+    add_task();
   }
   else {
     printf("Commands wasn't finded\n");
