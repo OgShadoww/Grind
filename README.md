@@ -1,43 +1,35 @@
-# 🧠 Grind
+# Grind — CLI XP Manager
 
-**Grind** is a minimalist CLI-based XP manager that helps you gamify your real life.
-
-Track real-world actions like coding, reading, workouts, and gain XP to "unlock" game time. No more guilt-driven gaming — earn your time, level up your life.
-
----
-
-## 🚀 Features
-
-- ✅ Add XP by completing tasks (`grind add code_30min`)
-- ✅ Spend XP to unlock (`grind spend 3`)
-- ✅ View current XP (`grind show`)
-- ✅ Lightweight and fast — written in C
-- ✅ Simple file-based system (no databases)
-- ✅ Fully offline — your XP stays local
-- ✅ Supports custom XP rules via `config.txt`
+Grind is a minimalist, file-based XP tracker that helps you gamify real life.
+Log completed tasks (coding, reading, workouts), accumulate XP, and optionally
+“spend” points to unlock leisure time. Fast, offline, and written in C.
 
 ---
 
-## General usage
+## Features
 
-xp - Shows details about app   
-xp add [name_of_task] - Add to you xp points of your done task   
-xp use [name_of_thing] - Use xp points for any of usages   
-xp show - Show your current xp points   
+- Add XP by recording completed tasks (simple CLI)
+- Spend XP to “unlock” time or rewards
+- Show current XP balance at any time
+- Lightweight and fast — single native binary in C
+- Plain text storage (no databases, works offline)
+- Custom XP rules via `config.txt` (per-task values)
 
 ---
 
-## 📦 Installation
+## Usage
 
-### Manual (Recommended for Development)
+- xp # display help / app info
+- xp add <task> # add XP using task name defined in config
+- xp spend <points> # deduct XP points
+0 xp show # print current XP balance
 
+## Installation
+
+### Manual (recommended for development)
+
+macOS (Apple Silicon / Intel):
 ```bash
-gcc main.c -o grind
-mv grind /opt/homebrew/bin/  # or /usr/local/bin/ on Intel Macs
+make
+sudo mv xp /opt/homebrew/bin/    # or /usr/local/bin on Intel Macs
 ```
-
----
-
-### Plans for future:
-
-- Abilitty to download via Homebrew
